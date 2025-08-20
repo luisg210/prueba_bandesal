@@ -1,0 +1,93 @@
+<html lang="es" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <title></title>
+    <style>
+        body {
+            background-color: #252E3C;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">
+            <i class="bi bi-journal-code"></i> X Business
+        </a>
+
+        <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#sidebar" aria-controls="sidebar">
+            <i class="bi bi-list"></i>
+        </button>
+    </div>
+</nav>
+
+<div class="container-fluid" style="padding-top: 56px;">
+    <div class="row">
+        <!-- Desktop aside -->
+        <aside class="col-lg-2 bg-dark d-none d-lg-block vh-100">
+            <nav class="nav flex-column nav-pills py-3">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}"><i class="bi bi-house-door-fill me-2"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/blogs/}"><i class="bi bi-pencil-square me-2"></i>Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/readers/}"><i class="bi bi-people-fill me-2"></i>Readers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/blogs/blogs_readers}"><i
+                                class="bi bi-clipboard-data-fill me-2"></i>Blogs y readers</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Mobile aside -->
+        <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="sidebarLabel">Navegación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+            </div>
+            <div class="offcanvas-body p-0">
+                <nav class="nav flex-column navbar-dark bg-dark nav-pills py-3">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/}"><i class="bi bi-house-door-fill me-2"></i>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/blogs/}"><i class="bi bi-pencil-square me-2"></i>Blogs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/readers/}"><i class="bi bi-people-fill me-2"></i>Readers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/blogs/blogs_readers}"><i
+                                    class="bi bi-clipboard-data-fill me-2"></i>Blogs y readers</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <main class="col-lg-10 px-4 py-4">
+            <div th:insert="~{::content}"></div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+</body>
+</html>

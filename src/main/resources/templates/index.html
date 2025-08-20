@@ -1,0 +1,28 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html th:replace="~{layout}">
+
+<div th:fragment="content">
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Proyecto Luis</h2>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <a th:href="@{/blogs/}" class="btn btn-primary">Blogs</a>
+        </div>
+
+        <div class="col-lg-6">
+            <a th:href="@{/readers/}" class="btn btn-warning">Readers</a>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.title = "Index | Proyecto Luis";
+    </script>
+</div>
