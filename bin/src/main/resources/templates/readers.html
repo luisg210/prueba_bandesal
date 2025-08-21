@@ -1,0 +1,60 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html th:replace="~{layout}">
+
+<div th:fragment="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="center">Blogs</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <a th:href="@{/readers/add_reader}" class="btn btn-success">Agregar Reader</a>
+        </div>
+    </div>
+
+    <div class="alert alert-primary alert-dismissible fade show mt-2" role="alert" th:if="${msg} != null">
+        <pre th:text="${msg}"></pre>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <table class="table table-hover table-dark">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th colspan="2">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="reader : ${readers}">
+                    <td th:text="${reader.id}"></td>
+                    <td th:text="${reader.name}"></td>
+                    <td><a class="btn btn-danger btn-block" th:onclick="deleteReader([[${reader.id}]])">Eliminar</a></td>
+                    <td><a th:href="@{/readers/update_reader/} + ${reader.id}" class="btn btn-primary btn-block">Editar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.title = "Readers | Proyecto Luis";
+
+        const deleteReader = (id) => {
+            if (confirm('Estas seguro de eliminar el reader con id: ' + id)) {
+                location.href = '/readers/delete_reader/' + id;
+
+            } else
+                alert('Eliminación cancelada');
+        }
+    </script>
+</div>

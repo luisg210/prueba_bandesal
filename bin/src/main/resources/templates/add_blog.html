@@ -1,0 +1,77 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html th:replace="~{layout}">
+
+<div th:fragment="content">
+    <div class="row center mt-2">
+        <div class="col-lg-12">
+            <h2>Matenimiento Blog</h2>
+        </div>
+    </div>
+
+    <div class="alert alert-primary alert-dismissible fade show mt-2" role="alert" th:if="${msg} != null">
+        <pre th:text="${msg}"></pre>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <form th:action="@{/blogs/save_blog}" method="POST" th:object="${blog}">
+        <div class="row mt-2">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <input type="hidden" name="id" th:field="*{id}"/>
+
+                    <label>Titulo:</label>
+                    <input type="text" name="title" placeholder="Titulo" maxlength="255" th:field="*{title}"
+                           class="form-control"/>
+
+                    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label>Descriccion:</label>
+                    <textarea name="description" placeholder="..." th:field="*{description}"
+                              class="form-control" maxlength="455" cols="6"></textarea>
+
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                          class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label>Lectores:</label>
+                    <select class="form-select" th:field="*{readers}" name="readers" multiple>
+                        <option th:each="reader : ${readers}" th:value="${reader.id}" th:text="${reader.name}"
+                                th:selected="${blog.readers.contains(reader)}"></option>
+                    </select>
+
+                    <span th:if="${#fields.hasErrors('readers')}" th:errors="*{readers}" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-lg-6 col-md-12">
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+                <a onclick="window.history.back()" class="btn btn-primary">Volver</a>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        document.title = "Mantenimiento Blog | Proyecto Luis";
+    </script>
+
+</div>

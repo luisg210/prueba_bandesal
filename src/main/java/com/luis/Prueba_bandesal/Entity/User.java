@@ -1,34 +1,33 @@
 package com.luis.Prueba_bandesal.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import java.io.Serializable;
 
-import java.util.Collection;
-import java.util.List;
-
-//@Entity
-//@Table(name = "users")
-public class User {
+@Entity
+@Table(name = "USERS")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email", unique = true)
-    private String email;
+    @Column(unique = true, nullable = false)
+    @NotEmpty(message = "Email no puede ser vacio")
+    private String username;
 
-    /*@Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
+    @Column(nullable = false)
+    @NotEmpty(message = "Password no puede estar vacio")
+    private String password;
 
-    @Override
-    public String getPassword() {
-        return "";
-    }
-
-    @Override
-    public String getUsername() {
-        return "";
-    }
-     */
+    @Column
+    public String role = "USER";
 }
